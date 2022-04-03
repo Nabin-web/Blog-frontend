@@ -22,11 +22,12 @@ const Auth = () => {
     e.preventDefault()
     try {
       const data = await axios.post('http://localhost:5000/login', credentials)
+      console.log('Login', data)
       if (data.data.message) {
         localStorage.setItem('token', data.data.token)
         localStorage.setItem('userId', data.data.data._id)
         localStorage.setItem('userName', data.data.data.teamname)
-        route.push('/')
+        window.location.href = '/'
       }
     } catch (err) {}
   }

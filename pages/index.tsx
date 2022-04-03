@@ -12,6 +12,7 @@ const Home: NextPage = () => {
       headers: '',
     },
   })
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     setAuth({
@@ -43,7 +44,9 @@ const Home: NextPage = () => {
         <div className="col-span-1 lg:col-span-8">
           {posts &&
             Array.isArray(posts) &&
-            posts.map((post, index) => <PostCard post={post} key={index} />)}
+            posts.map((post, index) => (
+              <PostCard post={post} index={index} key={index} />
+            ))}
         </div>
         <div className="col-span-1 lg:col-span-1">
           <div className="lg-sticky relative">

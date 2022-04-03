@@ -1,12 +1,6 @@
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 
-const category = [
-  { name: 'TypeScript', slug: 'webdev' },
-
-  { name: 'Add', slug: 'react' },
-]
-
 const Header = () => {
   const [userName, setUserName] = React.useState('')
   const [auth, setAuth] = React.useState({
@@ -14,6 +8,8 @@ const Header = () => {
       headers: {},
     },
   })
+
+  const [bool, setBool] = React.useState(false)
 
   useEffect(() => {
     const userName = localStorage.getItem('userName')
@@ -27,8 +23,14 @@ const Header = () => {
     })
   }, [])
 
+  useEffect(() => {
+    bool && localStorage.clear()
+  }, [bool])
+
   const handleSubmit = () => {
     console.log('CLICKED')
+    setBool(!bool)
+    window.location.href = '/login'
   }
 
   return (
@@ -37,17 +39,19 @@ const Header = () => {
         <div className="block md:float-left">
           <Link href="/">
             <span className="float-left cursor-pointer text-4xl font-bold text-white">
-              Blog
+              BlogBook
             </span>
           </Link>
         </div>
         <div className="hidden md:float-left md:contents">
           <span>
-            {auth ? (
+            {userName.length ? (
               <>
                 <Link key={1} href="/">
                   <button
-                    onClick={handleSubmit}
+                    onClick={() => {
+                      handleSubmit()
+                    }}
                     className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white md:float-right"
                   >
                     logout
@@ -66,21 +70,18 @@ const Header = () => {
 
         <div className="hidden md:float-left md:contents">
           <span>
-            {auth ? (
+            {userName ? (
               <>
                 <Link key={1} href="/">
-                  <button
-                    onClick={handleSubmit}
-                    className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white md:float-right"
-                  >
+                  <button className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white md:float-right">
                     {userName}
                   </button>
                 </Link>
               </>
             ) : (
-              <Link key={1} href="/login">
+              <Link key={1} href="/register">
                 <span className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white md:float-right">
-                  Login
+                  Register
                 </span>
               </Link>
             )}
