@@ -1,0 +1,7 @@
+export { default as PostCard } from './PostCard/PostCard'
+export { default as PostWidget } from './PostWidget/PostWidget'
+export { default as Header } from './Header/Header'
+export { default as Layout } from './Layout/Layout'
+export { default as Auth } from './Login/Auths'
+export { default as Registration } from './Register/Registration'
+export { default as AddBlog } from './AddBlog/AddBlogs'

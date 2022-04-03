@@ -7,4 +7,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  backgroundImage: {
+    bricks: "url('/ui/bg_mask.webp')",
+  },
 }
