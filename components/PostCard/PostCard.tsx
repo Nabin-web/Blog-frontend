@@ -68,6 +68,10 @@ const PostCard = (post: any) => {
   }
 
   const reviewSubmit = async () => {
+    setReview({
+      ...review,
+      comment: '',
+    })
     const data = await axios.post(
       'http://localhost:5000/review',
       review,
